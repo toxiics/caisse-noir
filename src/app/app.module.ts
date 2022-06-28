@@ -11,9 +11,19 @@ import { HomeComponent } from './components/home/home.component';
 import { ProfileComponent } from './components/profile/profile.component';
 import { BoardAdminComponent } from './components/board-admin/board-admin.component';
 import { BoardModeratorComponent } from './components/board-moderator/board-moderator.component';
-
-import { authInterceptorProviders } from '../app/helpers/auth.interceptor'
-
+import { AuthGuard } from './_guards/auth.guard';
+import { authInterceptorProviders } from '../app/helpers/auth.interceptor';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations'
+// Material
+import { MatButtonModule } from '@angular/material/button';
+import { MatCardModule } from '@angular/material/card';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
+import { MatIconModule } from '@angular/material/icon';
+import { MatToolbarModule } from '@angular/material/toolbar';
+import { MatSidenavModule } from '@angular/material/sidenav';
+import { MatListModule } from '@angular/material/list';
+import { LayoutModule } from '@angular/cdk/layout';
 @NgModule({
   declarations: [
     AppComponent,
@@ -29,9 +39,19 @@ import { authInterceptorProviders } from '../app/helpers/auth.interceptor'
     BrowserModule,
     FormsModule,
     HttpClientModule,
-    ReactiveFormsModule
+    LayoutModule,
+    ReactiveFormsModule,
+    BrowserAnimationsModule,
+    MatButtonModule,
+    MatCardModule,
+    MatFormFieldModule,
+    MatInputModule,
+    MatIconModule,
+    MatListModule,
+    MatToolbarModule,
+    MatSidenavModule
   ],
-  providers: [authInterceptorProviders],
+  providers: [authInterceptorProviders, AuthGuard],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

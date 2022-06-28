@@ -18,12 +18,12 @@ export class UserService {
   getUserBoard(): Observable<any> {
     return this.http.get(API_URL + 'user', { responseType: 'text', headers: this.headers });
   }
-  getModeratorBoard(): Observable<any> {
-    return this.http.get(API_URL + 'mod', { responseType: 'text', headers: this.headers });
-  }
-  getAdminBoard(): Observable<any> {
-    return this.http.get(API_URL + 'admin', { responseType: 'text', headers: this.headers });
-  }
+  // getModeratorBoard(): Observable<any> {
+  //   return this.http.get(API_URL + 'mod', { responseType: 'text', headers: this.headers });
+  // }
+  // getAdminBoard(): Observable<any> {
+  //   return this.http.get(API_URL + 'admin', { responseType: 'text', headers: this.headers });
+  // }
   deleteUser(id): Observable<any> {
     return this.http.get(`${API_URL}delete/${id}`, { responseType: 'text', headers: this.headers });
   }

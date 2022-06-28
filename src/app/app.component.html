@@ -1,35 +1,48 @@
-<div id="app">
-  <nav class="navbar navbar-expand navbar-dark bg-dark">
-    <span class="navbar-brand">Caisse Noire</span>
-    <ul class="navbar-nav mr-auto" routerLinkActive="active">
-      <li class="nav-item">
+<div id="app" style="height: 100vh">
+  <mat-toolbar class="mat-elevation-z8">
+    <button mat-icon-button *ngIf="sidenav.mode === 'over'" (click)="sidenav.toggle()">
+      <mat-icon *ngIf="!sidenav.opened"> menu </mat-icon>
+      <mat-icon *ngIf="sidenav.opened"> close </mat-icon>
+    </button>
+    <span>Caisse Noire</span>
+  </mat-toolbar>
+  <mat-sidenav-container class="example-container">
+    <mat-sidenav #sidenav="matSidenav" class="mat-elevation-z8">
+      <img class="avatar mat-elevation-z8" src="../assets/images/149071.png" />
+
+      <div *ngIf="user">
+        <h4 class="name">{{ user.lastname }}</h4>
+        <p class="designation">{{ user.username }}</p>
+      </div>
+
+      <mat-divider></mat-divider>
+      <mat-nav-list>
         <a href="/home" class="nav-link" routerLink="home">Accueil </a>
-      </li>
-      <li class="nav-item" *ngIf="showAdminBoard">
-        <a href="/admin" class="nav-link" routerLink="admin">Admin Board</a>
-      </li>
-      <li class="nav-item" *ngIf="showModeratorBoard">
-        <a href="/mod" class="nav-link" routerLink="mod">Moderator Board</a>
-      </li>
-    </ul>
-    <ul class="navbar-nav ml-auto" *ngIf="!isLoggedIn">
-      <li class="nav-item">
-        <a href="/register" class="nav-link" routerLink="register">S'inscrire</a>
-      </li>
-      <li class="nav-item">
-        <a href="/login" class="nav-link" routerLink="login">Se connecter</a>
-      </li>
-    </ul>
-    <ul class="navbar-nav ml-auto" *ngIf="isLoggedIn">
-      <li class="nav-item">
-        <a href="/profile" class="nav-link" routerLink="profile">{{ username }}</a>
-      </li>
-      <li class="nav-item">
-        <a href class="nav-link" (click)="logout()">LogOut</a>
-      </li>
-    </ul>
-  </nav>
-  <div class="container">
+
+        <a *ngIf="showAdminBoard" href="/admin" class="nav-link" routerLink="admin">Admin Board</a>
+
+        <a *ngIf="showModeratorBoard" href="/mod" class="nav-link" routerLink="mod">Moderator Board</a>
+      </mat-nav-list>
+      <mat-divider></mat-divider>
+      <button mat-button class="menu-button" *ngIf="user; else login">
+        <mat-icon>power_settings_new</mat-icon>
+        <span>Se déconnecter</span>
+      </button>
+      <ng-template #login>
+        <button mat-button class="menu-button">
+          <mat-icon>person</mat-icon>
+          <span>Se connecter</span>
+        </button>
+      </ng-template>
+    </mat-sidenav>
+    <mat-sidenav-content>
+      <div class="content mat-elevation-z8">
+        <router-outlet></router-outlet>
+      </div>
+    </mat-sidenav-content>
+  </mat-sidenav-container>
+
+  <!-- <div class="container">
     <router-outlet></router-outlet>
-  </div>
+  </div> -->
 </div>

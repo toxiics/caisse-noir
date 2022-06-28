@@ -5,7 +5,11 @@ const USER_KEY = 'auth-user';
   providedIn: 'root'
 })
 export class TokenStorageService {
-  constructor() { }
+  isLoggedIn = false;
+
+  constructor() {
+    this.isLoggedIn = !!this.getToken();
+  }
   signOut(): void {
     window.sessionStorage.clear();
   }
