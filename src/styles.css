@@ -11,3 +11,7 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
   background: #004a9f !important;
   color: white !important;
 }
+
+input.mat-input-element {
+  font-size: initial;
+}
