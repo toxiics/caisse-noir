@@ -1,4 +1,4 @@
-<div class="col-md-12">
+<div class="container-login">
   <mat-card class="example-card mt-2" style="display: flex; flex-direction: column">
     <mat-card-header style="justify-content: center">
       <mat-card-title>Se connecter</mat-card-title>
@@ -16,7 +16,14 @@
         <div class="form-group">
           <mat-form-field appearance="standard" style="display: block">
             <mat-label for="password">Mot de passe</mat-label>
-            <input matInput type="password" formControlName="password" [(ngModel)]="loginForm.password" required minlength="6" />
+            <input
+              matInput
+              type="password"
+              formControlName="password"
+              [(ngModel)]="loginForm.password"
+              required
+              minlength="6"
+            />
             <mat-icon matSuffix>fa-solid fa-at</mat-icon>
             <mat-error style="font-size: 1rem">Mot de passe invalide</mat-error>
           </mat-form-field>
@@ -31,6 +38,8 @@
       </form>
     </mat-card-content>
     <mat-divider style="position: relative"></mat-divider>
-    <button mat-raised-button color="primary" (click)="router.navigate(['/register'])">Créer un compte</button>
+    <button class="create-account-button" mat-raised-button color="primary" (click)="router.navigate(['/register'])">
+      Créer un compte
+    </button>
   </mat-card>
 </div>

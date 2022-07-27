@@ -5,6 +5,7 @@ const Role = db.role;
 
 var jwt = require("jsonwebtoken");
 var bcrypt = require("bcryptjs");
+const { user } = require("../models/index");
 
 exports.signup = (req, res) => {
   const user = new User({
@@ -46,7 +47,7 @@ exports.signup = (req, res) => {
             }
 
             res.send({
-              message: "User was registered successfully!"
+              message: "Inscription réussie"
             });
           });
         }
@@ -72,7 +73,7 @@ exports.signup = (req, res) => {
           }
 
           res.send({
-            message: "User was registered successfully!"
+            message: "Inscription réussie"
           });
         });
       });

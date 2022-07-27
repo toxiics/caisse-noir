@@ -21,7 +21,6 @@ app.use(express.urlencoded({
 const db = require("./models");
 const Role = db.role;
 
-console.log(dbConfig)
 db.mongoose
   .connect(`mongodb://${dbConfig.HOST}:${dbConfig.PORT}/${dbConfig.DB}`)
   .then((x) => {
@@ -43,6 +42,7 @@ app.get("/", (req, res) => {
 // routes
 require("./routes/auth.routes")(app);
 require("./routes/user.routes")(app);
+require("./routes/team.routes")(app);
 
 // set port, listen for requests
 const PORT = process.env.PORT || 4000;

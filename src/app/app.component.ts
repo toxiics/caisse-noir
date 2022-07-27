@@ -21,19 +21,20 @@ export class AppComponent {
   showAdminBoard = false;
   showModeratorBoard = false;
   user?: User;
+
   constructor(public tokenStorageService: TokenStorageService,
     private authService: AuthService,
     private cdRef: ChangeDetectorRef,
     private observer: BreakpointObserver,
     private router: Router) { }
-  ngOnInit(): void {
 
-    if (this.tokenStorageService.isLoggedIn) {
-      this.user = this.tokenStorageService.getUser();
-      this.roles = this.user.roles;
-      this.showAdminBoard = this.roles.length > 0 ? this.roles.includes('ROLE_ADMIN') : false;
-      this.showModeratorBoard = this.roles.length > 0 ? this.roles.includes('ROLE_MODERATOR') : false;
-    }
+  ngOnInit(): void {
+    this.authService.loginEvent
+      .subscribe(() => {
+        this.getUserInfo();
+      });
+
+    this.getUserInfo();
   }
   ngAfterViewInit() {
     this.observer
@@ -63,5 +64,21 @@ export class AppComponent {
 
   logout(): void {
     this.authService.logout();
+    this.getUserInfo();
+    console.log(this.user)
+  }
+
+  getUserInfo() {
+    if (this.tokenStorageService.isLoggedIn) {
+      this.user = this.tokenStorageService.getUser();
+      this.roles = this.user.roles;
+      this.showAdminBoard = this.roles.length > 0 ? this.roles.includes('ROLE_ADMIN') : false;
+      this.showModeratorBoard = this.roles.length > 0 ? this.roles.includes('ROLE_MODERATOR') : false;
+    } else {
+      this.user = null;
+      this.roles = [];
+      this.showAdminBoard = false;
+      this.showModeratorBoard = false;
+    }
   }
 }

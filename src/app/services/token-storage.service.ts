@@ -12,10 +12,12 @@ export class TokenStorageService {
   }
   signOut(): void {
     window.sessionStorage.clear();
+    this.isLoggedIn = false;
   }
   public saveToken(token: string): void {
     window.sessionStorage.removeItem(TOKEN_KEY);
     window.sessionStorage.setItem(TOKEN_KEY, token);
+    this.isLoggedIn = true;
   }
   public getToken(): string | null {
     return window.sessionStorage.getItem(TOKEN_KEY);

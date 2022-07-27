@@ -12,6 +12,7 @@ import { ProfileComponent } from './components/profile/profile.component';
 import { BoardAdminComponent } from './components/board-admin/board-admin.component';
 import { BoardModeratorComponent } from './components/board-moderator/board-moderator.component';
 import { AuthGuard } from './_guards/auth.guard';
+import { ConnectedGuard } from './_guards/connected.guard';
 import { authInterceptorProviders } from '../app/helpers/auth.interceptor';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations'
 // Material
@@ -24,6 +25,7 @@ import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatListModule } from '@angular/material/list';
 import { LayoutModule } from '@angular/cdk/layout';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
 @NgModule({
   declarations: [
     AppComponent,
@@ -49,9 +51,10 @@ import { LayoutModule } from '@angular/cdk/layout';
     MatIconModule,
     MatListModule,
     MatToolbarModule,
-    MatSidenavModule
+    MatSidenavModule,
+    MatSnackBarModule
   ],
-  providers: [authInterceptorProviders, AuthGuard],
+  providers: [authInterceptorProviders, AuthGuard, ConnectedGuard],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
