@@ -65,7 +65,6 @@ export class AppComponent {
   logout(): void {
     this.authService.logout();
     this.getUserInfo();
-    console.log(this.user)
   }
 
   getUserInfo() {

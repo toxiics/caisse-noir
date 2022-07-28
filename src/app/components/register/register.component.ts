@@ -53,7 +53,6 @@ export class RegisterComponent implements OnInit {
   }
 
   openSnackBar(message: string) {
-    console.log(message)
     this._snackBar.open(message, null, { duration: 5000 });
   }
 }

@@ -13,7 +13,6 @@ export class ConnectedGuard implements CanActivate {
       this.router.navigate(['/home'], { queryParams: { returnUrl: state.url } });
       return false;
     }
-
     return true;
   }
 }
